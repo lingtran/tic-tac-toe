@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -16,10 +17,19 @@ public class Game {
 
     public void start() {
         board.draw();
-        askPlayerWhereToMark();
     }
 
     public void askPlayerWhereToMark() {
-        printStream.println("\nTell me a number where you want to make a mark:");
+        printStream.println("\nTell me a number where you want to make a mark:\n");
+    }
+
+    public void play() throws IOException {
+        askPlayerWhereToMark();
+        String position = playerOne.giveMove();
+        updateBoardWith(position);
+    }
+
+    public void updateBoardWith(String markPosition) {
+        board.redraw(markPosition);
     }
 }

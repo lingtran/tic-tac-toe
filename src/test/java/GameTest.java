@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.mockito.Mockito.*;
 
@@ -33,7 +33,14 @@ public class GameTest {
     public void shouldAskPlayerToEnterAPositionNumber() {
         game.askPlayerWhereToMark();
 
-        verify(printStream).println("\nTell me a number where you want to make a mark:");
+        verify(printStream).println("\nTell me a number where you want to make a mark:\n");
     }
 
+    @Test
+    public void playShouldRedrawBoardWithPositionNumberGivenByPlayer() throws IOException {
+        game.play();
+
+        verify(playerOne).giveMove();
+        verify(board).redraw("1");
+    }
 }

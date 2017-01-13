@@ -1,6 +1,5 @@
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,4 +39,6 @@ public class Board {
         }
     }
 
+    public void redraw(String markPosition) {
+    }
 }
