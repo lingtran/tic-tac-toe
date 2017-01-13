@@ -1,10 +1,7 @@
 import org.junit.Test;
+import org.mockito.stubbing.OngoingStubbing;
 
-import java.io.PrintStream;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by ltran on 1/13/17.
@@ -13,11 +10,12 @@ public class GameTest {
     @Test
     public void shouldHaveBoardAfterGameStarts() {
         Board board = mock(Board.class);
-        Game game = new Game();
+        Game game = new Game(board);
 
         game.start();
 
-        verify(board);
+        verify(board).draw();
     }
+
 
 }
