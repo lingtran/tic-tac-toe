@@ -11,6 +11,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by ltran on 1/13/17.
  */
+
 public class BoardTest {
     private PrintStream printStream;
     private Board board;

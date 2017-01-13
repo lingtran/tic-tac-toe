@@ -5,7 +5,6 @@ import java.io.PrintStream;
  */
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board(System.out);
-        board.draw();
+        new Game().start();
     }
 }
