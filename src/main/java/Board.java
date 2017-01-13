@@ -1,8 +1,5 @@
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by ltran on 1/13/17.
@@ -13,30 +10,32 @@ public class Board {
 
     public Board(PrintStream printStream) {
         this.printStream = printStream;
-        createRow();
+        createBoardPositions();
     }
 
     public void draw() {
-        printStream.println("1|2|3\n-----\n4|5|6\n-----\n7|8|9\n");
+        String rows = drawRows().replaceAll("\n", "\n-----\n");
+        printStream.println(rows);
     }
 
-    public String drawRow() {
+    public String drawRows() {
         String row = "";
 
         for (Integer integer : boardPositions.keySet()) {
             if (integer % 3 == 0) {
-                row += boardPositions.get(integer);
+                row += boardPositions.get(integer) + "\n";
             } else {
                 row += boardPositions.get(integer) + "|";
             }
         }
 
-        return row;
+        return row.trim();
     }
 
-    private void createRow() {
-        for(int i=1; i<=3; i++) {
+    private void createBoardPositions() {
+        for(int i=1; i<=9; i++) {
             boardPositions.put(i, Integer.toString(i));
         }
     }
+
 }

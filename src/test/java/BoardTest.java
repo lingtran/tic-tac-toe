@@ -25,14 +25,14 @@ public class BoardTest {
     public void shouldDrawBoard() {
         board.draw();
 
-        verify(printStream).println("1|2|3\n-----\n4|5|6\n-----\n7|8|9\n");
+        verify(printStream).println("1|2|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 
     @Test
-    public void shouldDrawARowWithThreePositions(){
-        String result = board.drawRow();
+    public void shouldDrawThreeRowsWithThreePositionsInEachRow(){
+        String result = board.drawRows();
 
-        assertThat(result, is("1|2|3"));
-
+        assertThat(result, is("1|2|3\n4|5|6\n7|8|9"));
     }
+
 }
