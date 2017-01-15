@@ -6,30 +6,27 @@ import java.io.PrintStream;
  */
 public class Game {
     private Board board;
-    private Player playerOne;
+    private InputParser inputParserOne;
     private PrintStream printStream;
 
-    public Game(Board board, Player playerOne, PrintStream printStream) {
+    public Game(Board board, InputParser inputParserOne, PrintStream printStream) {
         this.board = board;
-        this.playerOne = playerOne;
+        this.inputParserOne = inputParserOne;
         this.printStream = printStream;
     }
 
-    public void start() {
+    public void start() throws IOException {
         board.draw();
+        askPlayerWhereToMark();
+        updateBoardWith();
     }
 
     public void askPlayerWhereToMark() {
         printStream.println("\nTell me a number where you want to make a mark:\n");
     }
 
-    public void play() throws IOException {
-        askPlayerWhereToMark();
-        String position = playerOne.giveMove();
-        updateBoardWith(position);
-    }
-
-    public void updateBoardWith(String markPosition) {
+    public void updateBoardWith() throws IOException {
+        String markPosition = inputParserOne.giveMove();
         board.redraw(markPosition);
     }
 }

@@ -11,19 +11,19 @@ import static org.mockito.Mockito.*;
 public class GameTest {
     private PrintStream printStream;
     private Board board;
-    private Player playerOne;
+    private InputParser inputParser;
     private Game game;
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         board = mock(Board.class);
-        playerOne = mock(Player.class);
-        game = new Game(board, playerOne, printStream);
+        inputParser = mock(InputParser.class);
+        game = new Game(board, inputParser, printStream);
     }
 
     @Test
-    public void shouldHaveBoardAfterGameStarts() {
+    public void shouldHaveBoardAfterGameStarts() throws IOException {
         game.start();
 
         verify(board).draw();
@@ -37,10 +37,11 @@ public class GameTest {
     }
 
     @Test
-    public void playShouldRedrawBoardWithPositionNumberGivenByPlayer() throws IOException {
-        game.play();
+    public void shouldRedrawBoardWithPositionNumberGivenByPlayer() throws IOException {
+        when(inputParser.giveMove()).thenReturn("1");
 
-        verify(playerOne).giveMove();
-        verify(board).redraw("1");
+        game.updateBoardWith();
+
+        verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 }
