@@ -4,11 +4,11 @@ import java.io.IOException;
 /**
  * Created by ltran on 1/13/17.
  */
-public class InputParser {
+public class Player {
 
     private BufferedReader bufferedReader;
 
-    public InputParser(BufferedReader bufferedReader) {
+    public Player(BufferedReader bufferedReader) {
         this.bufferedReader = bufferedReader;
     }
 

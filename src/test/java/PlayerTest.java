@@ -12,14 +12,14 @@ import static org.mockito.Mockito.when;
 /**
  * Created by ltran on 1/13/17.
  */
-public class InputParserTest {
+public class PlayerTest {
     @Test
     public void parserCanReadPositionNumber() throws IOException {
         BufferedReader bufferedReader = mock(BufferedReader.class);
-        InputParser inputParser = new InputParser(bufferedReader);
+        Player player = new Player(bufferedReader);
         when(bufferedReader.readLine()).thenReturn("1");
 
-        String resultInput = inputParser.giveMove();
+        String resultInput = player.giveMove();
 
         assertThat(resultInput, is("1"));
     }

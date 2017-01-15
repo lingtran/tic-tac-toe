@@ -40,5 +40,8 @@ public class Board {
     }
 
     public void redraw(String markPosition) {
+      Integer targetPosition = boardPositions.indexOf(markPosition);
+      boardPositions.set(targetPosition, "X");
+      draw();
     }
 }

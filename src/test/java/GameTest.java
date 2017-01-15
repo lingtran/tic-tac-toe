@@ -11,15 +11,15 @@ import static org.mockito.Mockito.*;
 public class GameTest {
     private PrintStream printStream;
     private Board board;
-    private InputParser inputParser;
+    private Player player;
     private Game game;
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         board = mock(Board.class);
-        inputParser = mock(InputParser.class);
-        game = new Game(board, inputParser, printStream);
+        player = mock(Player.class);
+        game = new Game(board, player, printStream);
     }
 
     @Test
@@ -38,10 +38,10 @@ public class GameTest {
 
     @Test
     public void shouldRedrawBoardWithPositionNumberGivenByPlayer() throws IOException {
-        when(inputParser.giveMove()).thenReturn("1");
+        when(player.giveMove()).thenReturn("1");
 
-        game.updateBoardWith();
+        game.updateBoard();
 
-        verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
+        verify(board).redraw("1");
     }
 }
