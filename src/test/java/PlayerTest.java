@@ -32,7 +32,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void playerCanMarkTheirMarkX() {
+    public void playerCanMakeTheirMarkX() {
         String resultMark = player.makeMark();
 
         assertThat(resultMark, is("X"));

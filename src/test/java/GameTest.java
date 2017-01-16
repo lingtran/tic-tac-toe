@@ -24,12 +24,12 @@ public class GameTest {
         game = new Game(board, playerOne, playerTwo, printStream);
     }
 
-    public void setUpFirstPlayer() throws IOException {
+    private void setUpFirstPlayer() throws IOException {
         when(playerOne.makeMark()).thenReturn("X");
         when(playerOne.giveMove()).thenReturn("1");
     }
 
-    public void setUpSecondPlayer() throws IOException {
+    private void setUpSecondPlayer() throws IOException {
         when(playerTwo.giveMove()).thenReturn("1");
         when(playerTwo.makeMark()).thenReturn("0");
     }
