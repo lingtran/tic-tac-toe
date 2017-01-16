@@ -7,27 +7,38 @@ import java.io.PrintStream;
 public class Game {
     private Board board;
     private Player playerOne;
+    private Player playerTwo;
     private PrintStream printStream;
 
-    public Game(Board board, Player playerOne, PrintStream printStream) {
+    public Game(Board board, Player playerOne, Player playerTwo, PrintStream printStream) {
         this.board = board;
         this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
         this.printStream = printStream;
     }
 
     public void start() throws IOException {
         board.draw();
         askPlayerWhereToMark();
-        updateBoard();
+        firstPlayerMakesMove();
+        askPlayerWhereToMark();
+        secondPlayerMakesMove();
     }
 
     public void askPlayerWhereToMark() {
         printStream.println("\nTell me a number where you want to make a mark:\n");
     }
 
-    public void updateBoard() throws IOException {
-        String markPosition = playerOne.giveMove();
-        String mark = playerOne.makeMark();
-        board.redraw(markPosition, mark);
+    public void firstPlayerMakesMove() throws IOException {
+        updateBoardWith(playerOne.giveMove(), playerOne.makeMark());
     }
+
+    public void secondPlayerMakesMove() throws IOException {
+        updateBoardWith(playerTwo.giveMove(), playerTwo.makeMark());
+    }
+
+    private void updateBoardWith(String playerMove, String playerMark) throws IOException {
+        board.redraw(playerMove, playerMark);
+    }
+
 }
