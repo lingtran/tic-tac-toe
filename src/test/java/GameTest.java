@@ -12,6 +12,7 @@ public class GameTest {
     private PrintStream printStream;
     private Board board;
     private Player playerOne;
+    private Player playerTwo;
     private Game game;
 
     @Before
@@ -19,7 +20,18 @@ public class GameTest {
         printStream = mock(PrintStream.class);
         board = mock(Board.class);
         playerOne = mock(Player.class);
-        game = new Game(board, playerOne, printStream);
+        playerTwo = mock(Player.class);
+        game = new Game(board, playerOne, playerTwo, printStream);
+    }
+
+    private void setUpFirstPlayer() throws IOException {
+        when(playerOne.makeMark()).thenReturn("X");
+        when(playerOne.giveMove()).thenReturn("1");
+    }
+
+    private void setUpSecondPlayer() throws IOException {
+        when(playerTwo.giveMove()).thenReturn("1");
+        when(playerTwo.makeMark()).thenReturn("0");
     }
 
     @Test
@@ -38,13 +50,20 @@ public class GameTest {
 
     @Test
     public void shouldRedrawBoardWithPositionNumberGivenByPlayer() throws IOException {
-        when(playerOne.makeMark()).thenReturn("X");
-        when(playerOne.giveMove()).thenReturn("1");
+        setUpFirstPlayer();
 
-        game.updateBoard();
+        game.firstPlayerMakesMove();
 
         verify(board).redraw("1", "X");
     }
 
+    @Test
+    public void shouldRedrawBoardWithPositionNumberGivenByASecondPlayer() throws IOException {
+        setUpFirstPlayer();
+        setUpSecondPlayer();
 
+        game.secondPlayerMakesMove();
+
+        verify(board).redraw("1", "0");
+    }
 }
