@@ -33,15 +33,31 @@ public class Board {
         return row.trim();
     }
 
+
+    public void redraw(String markPosition, String mark) {
+      updateBoardPositions(markPosition, mark);
+      draw();
+    }
+
+
+    public boolean determineIfPositionIsFreeAt(String markPosition) {
+        Integer targetPosition = getIndexFor(markPosition);
+        String currentMarkAtPosition = boardPositions.get(targetPosition);
+        return  currentMarkAtPosition.matches(markPosition);
+    }
+
     private void createBoardPositions() {
         for(int i=0; i<9; i++) {
             boardPositions.add(Integer.toString(i+1));
         }
     }
 
-    public void redraw(String markPosition, String mark) {
-      Integer targetPosition = Integer.parseInt(markPosition) - 1;
-      boardPositions.set(targetPosition, mark);
-      draw();
+    private void updateBoardPositions(String markPosition, String mark) {
+        Integer targetPosition = getIndexFor(markPosition);
+        boardPositions.set(targetPosition, mark);
+    }
+
+    private Integer getIndexFor(String markPosition) {
+        return Integer.parseInt(markPosition) - 1;
     }
 }
