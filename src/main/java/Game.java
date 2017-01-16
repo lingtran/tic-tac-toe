@@ -21,7 +21,6 @@ public class Game {
         board.draw();
         askPlayerWhereToMark();
         firstPlayerMakesMove();
-        askPlayerWhereToMark();
         secondPlayerMakesMove();
     }
 
