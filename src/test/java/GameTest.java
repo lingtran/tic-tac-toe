@@ -46,5 +46,9 @@ public class GameTest {
         verify(board).redraw("1", "X");
     }
 
+    @Test
+    public void shouldRedrawBoardWithPositionNumberGivenByASecondPlayer() {
+//        After the first player makes a move, tell a second player to make their move. Redraw the board with an ‘O’ in that location (and still draw player 1’s ‘X’). You don’t need to check if that location is already taken.
 
+    }
 }
