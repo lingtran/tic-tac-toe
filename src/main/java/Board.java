@@ -1,12 +1,13 @@
 import java.io.PrintStream;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ltran on 1/13/17.
  */
 public class Board {
     PrintStream printStream;
-    HashMap<Integer, String> boardPositions = new HashMap<Integer, String>();
+    List<String> boardPositions = new ArrayList();
 
     public Board(PrintStream printStream) {
         this.printStream = printStream;
@@ -21,11 +22,11 @@ public class Board {
     public String drawRows() {
         String row = "";
 
-        for (Integer integer : boardPositions.keySet()) {
-            if (integer % 3 == 0) {
-                row += boardPositions.get(integer) + "\n";
+        for (String position : boardPositions) {
+            if ((boardPositions.indexOf(position) + 1) % 3 == 0) {
+                row += position + "\n";
             } else {
-                row += boardPositions.get(integer) + "|";
+                row += position + "|";
             }
         }
 
@@ -33,9 +34,14 @@ public class Board {
     }
 
     private void createBoardPositions() {
-        for(int i=1; i<=9; i++) {
-            boardPositions.put(i, Integer.toString(i));
+        for(int i=0; i<9; i++) {
+            boardPositions.add(Integer.toString(i+1));
         }
     }
 
+    public void redraw(String markPosition, String mark) {
+      Integer targetPosition = boardPositions.indexOf(markPosition);
+      boardPositions.set(targetPosition, mark);
+      draw();
+    }
 }
