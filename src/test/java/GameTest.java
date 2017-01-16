@@ -30,7 +30,7 @@ public class GameTest {
     }
 
     private void setUpSecondPlayerWithSameMove() throws IOException {
-        when(playerTwo.giveMove()).thenReturn("1");
+        when(playerTwo.giveMove()).thenReturn("1").thenReturn("2");
         when(playerTwo.makeMark()).thenReturn("0");
     }
 
@@ -73,12 +73,13 @@ public class GameTest {
     }
 
     @Test
-    public void shouldDisplayAMessageForALocationAlreadyTaken() throws IOException {
+    public void shouldDisplayAMessageForALocationAlreadyTakenUntilValidInputIsGiven() throws IOException {
         setUpFirstPlayer();
         setUpSecondPlayerWithSameMove();
 
         game.secondPlayerMakesMove();
 
         verify(printStream).println("\nLocation already taken");
+        verify(board).redraw("2", "0");
     }
 }

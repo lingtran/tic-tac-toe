@@ -33,22 +33,28 @@ public class Board {
         return row.trim();
     }
 
+
+    public void redraw(String markPosition, String mark) {
+      updateBoardPositions(markPosition, mark);
+      draw();
+    }
+
+
+    public boolean positionFreeAt(String markPosition) {
+        Integer targetPosition = getIndexFor(markPosition);
+        String currentMarkAtPosition = boardPositions.get(targetPosition);
+        return  currentMarkAtPosition.matches(markPosition);
+    }
+
     private void createBoardPositions() {
         for(int i=0; i<9; i++) {
             boardPositions.add(Integer.toString(i+1));
         }
     }
 
-    public void redraw(String markPosition, String mark) {
-      Integer targetPosition = getIndexFor(markPosition);
-      boardPositions.set(targetPosition, mark);
-      draw();
-    }
-
-    public boolean positionFreeAt(String markPosition) {
+    private void updateBoardPositions(String markPosition, String mark) {
         Integer targetPosition = getIndexFor(markPosition);
-        String currentMarkAtPosition = boardPositions.get(targetPosition);
-        return  currentMarkAtPosition.matches(markPosition);
+        boardPositions.set(targetPosition, mark);
     }
 
     private Integer getIndexFor(String markPosition) {
