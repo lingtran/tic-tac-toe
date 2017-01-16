@@ -11,8 +11,8 @@ public class Main {
         PrintStream printStream = System.out;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Board board = new Board(printStream);
-        Player player = new Player(bufferedReader);
-        Game game = new Game(board, player, printStream);
+        Player playerOne = new Player(bufferedReader, "X");
+        Game game = new Game(board, playerOne, printStream);
 
         game.start();
     }

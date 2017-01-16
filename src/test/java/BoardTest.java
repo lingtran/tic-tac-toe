@@ -38,7 +38,7 @@ public class BoardTest {
 
     @Test
     public void shouldRedrawBoardWithAnX() {
-        board.redraw("1");
+        board.redraw("1", "X");
 
         verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
     }

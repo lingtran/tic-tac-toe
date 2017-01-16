@@ -27,6 +27,7 @@ public class Game {
 
     public void updateBoard() throws IOException {
         String markPosition = playerOne.giveMove();
-        board.redraw(markPosition);
+        String mark = playerOne.makeMark();
+        board.redraw(markPosition, mark);
     }
 }
