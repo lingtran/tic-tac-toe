@@ -40,8 +40,18 @@ public class Board {
     }
 
     public void redraw(String markPosition, String mark) {
-      Integer targetPosition = Integer.parseInt(markPosition) - 1;
+      Integer targetPosition = getIndexFor(markPosition);
       boardPositions.set(targetPosition, mark);
       draw();
+    }
+
+    public boolean positionFreeAt(String markPosition) {
+        Integer targetPosition = getIndexFor(markPosition);
+        String currentMarkAtPosition = boardPositions.get(targetPosition);
+        return  currentMarkAtPosition.matches(markPosition);
+    }
+
+    private Integer getIndexFor(String markPosition) {
+        return Integer.parseInt(markPosition) - 1;
     }
 }

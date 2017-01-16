@@ -43,4 +43,12 @@ public class BoardTest {
         verify(printStream).println("X|2|3\n-----\n4|5|6\n-----\n7|8|9");
     }
 
+    @Test
+    public void shouldTellIfAPositionIsNotFree() throws Exception {
+        board.redraw("1", "X");
+
+        Boolean notFree = board.positionFreeAt("1");
+
+        assertThat(notFree, is(false));
+    }
 }

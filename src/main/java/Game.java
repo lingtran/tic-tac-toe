@@ -38,7 +38,12 @@ public class Game {
     }
 
     private void updateBoardWith(String playerMove, String playerMark) throws IOException {
-        board.redraw(playerMove, playerMark);
+        if (board.positionFreeAt(playerMove)) {
+            board.redraw(playerMove, playerMark);
+        } else {
+            printStream.println("\nLocation already taken");
+            askPlayerWhereToMark();
+        }
     }
 
 }

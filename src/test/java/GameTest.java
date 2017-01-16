@@ -79,6 +79,6 @@ public class GameTest {
 
         game.secondPlayerMakesMove();
 
-        verify(printStream).println("Location already taken");
+        verify(printStream).println("\nLocation already taken");
     }
 }
