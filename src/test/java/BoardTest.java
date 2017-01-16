@@ -47,7 +47,7 @@ public class BoardTest {
     public void shouldTellIfAPositionIsNotFree() throws Exception {
         board.redraw("1", "X");
 
-        Boolean notFree = board.positionFreeAt("1");
+        Boolean notFree = board.determineIfPositionIsFreeAt("1");
 
         assertThat(notFree, is(false));
     }

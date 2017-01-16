@@ -34,16 +34,22 @@ public class Game {
     }
 
     public void secondPlayerMakesMove() throws IOException {
-        updateBoardWith(playerTwo.giveMove(), playerTwo.makeMark());
+        playerTakesTurn(playerTwo.giveMove(), playerTwo.makeMark());
+    }
+
+    private void playerTakesTurn(String playerMove, String playerMark) throws IOException {
+        if (!board.determineIfPositionIsFreeAt(playerMove)) {
+                printStream.println("\nLocation already taken");
+                askPlayerWhereToMark();
+                playerTakesTurn(playerMove, playerMark);
+
+        } else {
+            updateBoardWith(playerMove, playerMark);
+        }
     }
 
     private void updateBoardWith(String playerMove, String playerMark) throws IOException {
-        if (board.positionFreeAt(playerMove)) {
-            board.redraw(playerMove, playerMark);
-        } else {
-            printStream.println("\nLocation already taken");
-            askPlayerWhereToMark();
-        }
+        board.redraw(playerMove, playerMark);
     }
 
 }

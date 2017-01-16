@@ -40,7 +40,7 @@ public class Board {
     }
 
 
-    public boolean positionFreeAt(String markPosition) {
+    public boolean determineIfPositionIsFreeAt(String markPosition) {
         Integer targetPosition = getIndexFor(markPosition);
         String currentMarkAtPosition = boardPositions.get(targetPosition);
         return  currentMarkAtPosition.matches(markPosition);
