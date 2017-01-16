@@ -80,6 +80,7 @@ public class GameTest {
         game.secondPlayerMakesMove();
 
         verify(printStream).println("\nLocation already taken");
+//        verify(printStream).println("\nTell me a number where you want to make a mark:\n");
         verify(board).redraw("2", "0");
     }
 }
